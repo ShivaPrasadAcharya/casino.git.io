@@ -2,5 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Timeline custom styles */
+.timeline-year {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.5px;
+}
+
+.timeline-title {
+  line-height: 1.4;
+}
+
+.timeline-description {
+  color: #374151;
+  line-height: 1.6;
+  letter-spacing: 0.2px;
+}
+
+/* Enhance readability with better spacing */
+.timeline-entry {
+  margin-bottom: 1.5rem;
+}
+
+/* Add subtle hover effects */
+.timeline-card:hover {
+  transform: translateY(-2px);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Improve active state visibility */
+.timeline-active {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
 /* Import print styles */
 @import './print.css';
