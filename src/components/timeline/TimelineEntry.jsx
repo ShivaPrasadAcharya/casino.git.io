@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import CategoryIcon from './CategoryIcon';
 import HighlightedText from './HighlightedText';
+import Card from './Card';
+import CardContent from './CardContent';
 
 const TimelineEntry = ({ 
   data, 
@@ -40,16 +42,16 @@ const TimelineEntry = ({
             >
               <CategoryIcon category={data.category} />
               <div>
-                <div className="font-medium text-base">
+                <div className="font-bold text-lg tracking-wide text-blue-900">
                   <HighlightedText 
                     text={data.year.toString()}
                     searchTerm={searchTerm}
                     isCurrentMatch={isCurrentMatch}
                   />
                 </div>
-                <div className={`text-sm ${isActive ? 'text-blue-800' : 'text-gray-600'}`}>
+                <div className={`text-base font-semibold ${isActive ? 'text-blue-800' : 'text-gray-700'}`}>
                   <HighlightedText 
-                    text={data.title[language]}
+                    text={data.title[language] || ''}
                     searchTerm={searchTerm}
                     isCurrentMatch={isCurrentMatch}
                   />
@@ -57,27 +59,18 @@ const TimelineEntry = ({
               </div>
             </div>
 
-            {showContent && (
-              <div 
-                className="ml-0 md:ml-4 text-gray-700"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-              >
-                <div className="text-sm whitespace-pre-line">
-                  <HighlightedText 
-                    text={data.description[language]}
-                    searchTerm={searchTerm}
-                    isCurrentMatch={isCurrentMatch}
-                  />
-                </div>
-                {isHovered && (
-                  <div className="mt-2 p-3 bg-white rounded-lg shadow-md border border-gray-200">
-                    <div className="text-sm whitespace-pre-line">
-                      {data.description[language === 'en' ? 'ne' : 'en']}
-                    </div>
+            {showContent && isActive && (
+              <Card className="mt-3 w-full">
+                <CardContent className="p-4">
+                  <div className="text-base leading-relaxed text-gray-700 whitespace-pre-wrap">
+                    <HighlightedText 
+                      text={data.description[language] || ''}
+                      searchTerm={searchTerm}
+                      isCurrentMatch={isCurrentMatch}
+                    />
                   </div>
-                )}
-              </div>
+                </CardContent>
+              </Card>
             )}
           </div>
         </div>
@@ -87,3 +80,4 @@ const TimelineEntry = ({
 };
 
 export default TimelineEntry;
+
